@@ -170,22 +170,19 @@ var IconPicker = {
             // modal element
             var ipElement = document.getElementById('IconPickerModal');
 
-            // if modal element doesn't exist on document send XMLHttpRequest
+            // if modal element doesn't exist on document send Fetch Request
             if (!ipElement) {
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open('GET', jsonUrl, true);
-                xmlHttp.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-                xmlHttp.send();
-                xmlHttp.onreadystatechange = function () {
-                    if (this.readyState === 4) {
-                        if (this.status === 200) { // success
-                            var data = this.responseText;
-                            appendIconListToBody(data, buttonShowAll, buttonCancel, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback);
-                        } else {
-                            ipConsoleError('XMLHttpRequest Failed.');
-                        }
-                    }
-                };
+                fetch(jsonUrl)
+                  .then(function (res) { 
+                    return res.json() 
+                   })
+                  .then(function (responseJson) {
+                    var data = JSON.stringify(responseJson);
+                    appendIconListToBody(data, buttonShowAll, buttonCancel, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback);
+                  })
+                  .catch(function () {
+                    ipConsoleError('Fetch Request Failed.');
+                  });
             }
         }
         // IconPicker: Get Library from JSON and AppendTo Body off
