@@ -1,6 +1,6 @@
-﻿/*!
+/*!
 * IconPicker ('https://github.com/furcan/IconPicker')
-* Version: 1.5.0 
+* Version: 1.5.0
 * Author: Furkan MT ('https://github.com/furcan')
 * Dependencies: Font Awesome Free v5.11.2 (https://fontawesome.com/license/free)
 * Copyright 2019 IconPicker, MIT Licence ('https://opensource.org/licenses/MIT')*
@@ -10,7 +10,7 @@
 
 // IconPicker: Default Options on
 var ipDefaultOptions = {
-    jsonUrl: null,
+    faCssUrl: null,
     searchPlaceholder: 'Search Icon',
     showAllButton: 'Show All',
     cancelButton: 'Cancel',
@@ -85,7 +85,7 @@ var IconPicker = {
                     // IconPicker: Button Listeners -> Send XMLHttpRequest on
                     var ipButton = ipButtons[i];
                     ipButton.addEventListener('click', function () {
-                        var jsonUrl = ipNewOptions.jsonUrl;
+                        var faCssUrl = ipNewOptions.faCssUrl;
                         var inputElement = this.dataset.iconpickerInput;
                         var previewElement = this.dataset.iconpickerPreview;
                         var showAllButton = ipNewOptions.showAllButton;
@@ -106,8 +106,8 @@ var IconPicker = {
                         }
 
                         // check the json url on
-                        if (!jsonUrl) {
-                            ipConsoleError('You have to set the path of IconPicker JSON file to "jsonUrl" option. \n\nVisit to learn how: ' + ipGithubUrl);
+                        if (!faCssUrl) {
+                            ipConsoleError('You have to set the path of IconPicker JSON file to "faCssUrl" option. \n\nVisit to learn how: ' + ipGithubUrl);
                             return false;
                         }
                         // check the json url off
@@ -133,7 +133,7 @@ var IconPicker = {
                         }
                         // check the callback off
 
-                        getIconListXmlHttpRequest(jsonUrl, showAllButton, cancelButton, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback);
+                        getIconListXmlHttpRequest(faCssUrl, showAllButton, cancelButton, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback);
 
                     });
                     // IconPicker: Button Listeners -> Send XMLHttpRequest off
@@ -156,7 +156,7 @@ var IconPicker = {
 
 
         // IconPicker: Get Library from JSON and AppendTo Body on
-        var getIconListXmlHttpRequest = function (jsonUrl, buttonShowAll, buttonCancel, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback) {
+        var getIconListXmlHttpRequest = function (faCssUrl, buttonShowAll, buttonCancel, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback) {
 
             // if chrome browser
             if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
@@ -172,12 +172,29 @@ var IconPicker = {
 
             // if modal element doesn't exist on document send Fetch Request
             if (!ipElement) {
-                fetch(jsonUrl)
-                  .then(function (res) { 
-                    return res.json() 
-                   })
-                  .then(function (responseJson) {
-                    var data = JSON.stringify(responseJson);
+
+                fetch(faCssUrl)
+                  .then(function(res) {
+                    return res.text()
+                  })
+                  .then(responseText => {
+                    var pattern = /\.fa-(.*?)\:before/g;
+                    var faPrefixClassName = "fas fa-";
+                    var rawMatches = responseText.match(pattern);
+                    var faIcon = {};
+
+                    rawMatches.map(function (el,idx) {
+                      pattern.lastIndex=0; // reset globalIndex to avoid issue https://stackoverflow.com/q/1520800
+                      var matchGroup = pattern.exec(el);
+                      if (!matchGroup || !matchGroup[1]){
+                        return null;
+                      }
+                      if ((matchGroup[1]).includes(";")){
+                        return null;
+                      }
+                      faIcon[idx+""]=faPrefixClassName+matchGroup[1];
+                    });
+                    var data = JSON.stringify(faIcon);
                     appendIconListToBody(data, buttonShowAll, buttonCancel, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback);
                   })
                   .catch(function () {
@@ -359,7 +376,7 @@ var IconPicker = {
                     eachIconEventListener('search');
 
                 }
-                // show first icons        
+                // show first icons
                 else {
                     firstIconsArea.style.display = 'block';
                 }
