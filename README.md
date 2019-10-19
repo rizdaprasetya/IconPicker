@@ -1,183 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
+<p align="center">
+  <img src="https://raw.githubusercontent.com/furcan/IconPicker/master/github-cover.png" width="640" height="auto" alt="Icon Picker">
+</p>
 
-<head>
-    <meta charset="UTF-8">
 
-    <title>Icon Picker | Use the Font Awesome Icons (Font Awesome Free v5.11.2) in your HTML forms. (1544 icons)</title>
-    <meta name="description" content="Icon Picker | Use the Font Awesome Icons (Font Awesome Free v5.11.2) in your HTML forms. (1544 icons)" />
+# Icon Picker
+Use the Font Awesome Icons (Font Awesome Free v5.11.2) in your HTML forms. (1544 icons)
 
-    <meta name="content-language" content="en" />
-    <meta name="language" content="English" />
-    <meta name="robots" content="index, follow, noodp, noydir" />
-    <meta name="googlebot" content="index, follow, noodp, noydir" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <link rel="shortcut icon" href="favicon.ico" />
+### Current Version
+1.5.0 [*](https://github.com/furcan/IconPicker/blob/master/ReleaseNotes.md)
 
-    <link rel="canonical" href="https://furcan.github.io/IconPicker/" />
+### Website and Demo
+https://raw.githack.com/rizdaprasetya/IconPicker/master/index.html
 
-    <meta name="abstract" content="Icon Picker | Use the Font Awesome Icons (Font Awesome Free v5.11.2) in your HTML forms. (1544 icons)">
-    <meta name="author" content="Furcan" />
-    <meta name="generator" content="Furcan" />
-    <meta name="designer" content="Furcan">
-    <meta name="copyright" content="©2019 Icon Picker. All Rights Reserved.">
+---------
 
-    <meta name="theme-color" content="#a94158" />
+#### Install
 
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link id="FontMuli" href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700,900&display=swap&subset=latin-ext" rel="stylesheet">
-    <link id="FontConsolas" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin-ext" rel="stylesheet">
+##### [npm](https://www.npmjs.com/package/@furcan/iconpicker)
+```
+npm i @furcan/iconpicker
+```
+##### [yarn](https://yarnpkg.com/en/package/@furcan/iconpicker)
+```
+yarn add @furcan/iconpicker
+```
 
-    <link rel="stylesheet" href="dist/fontawesome-5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="dist/iconpicker-1.5.0.css">
-    <link rel="stylesheet" href="index.css?v=1.5.0">
-</head>
+---------
 
-<body>
+#### 1- CSS
 
-    <div class="main-wrapper">
+```html
+<link rel="stylesheet" href="dist/fontawesome-5.11.2/css/all.min.css" />
 
-        <div class="container container-1">
+<link rel="stylesheet" href="dist/iconpicker-1.5.0.css" />
+```
 
-            <div class="header-wrapper">
-                <a class="logo cantselect" href="https://furcan.github.io/IconPicker/">Icon Picker</a>
-                <span class="logo-desc">Use the Font Awesome Icons (Font Awesome Free v5.11.2) in your HTML forms. (1544 icons)</span>
-                <span class="logo-required">Font Awesome(v5.11.2) required</span>
-            </div>
+#### 2- JavaScript
 
-            <div class="info-wrapper">
-                <div class="info-content step-1">
-                    <code id="DemoCodeCSS">
-                        <span class="label">CSS</span>
-                        <span class="l1">&lt;link rel="stylesheet" href="<span>/IconPicker/dist/fontawesome-5.11.2/css/all.min.css</span>"&gt;</span>
-                        <span class="l1">&lt;link rel="stylesheet" href="<span>/IconPicker/dist/iconpicker-1.5.0.css</span>"&gt;</span>
-                    </code>
+```html
+<script src="dist/iconpicker-1.5.0.js"></script>
+```
 
-                    <code id="DemoCodeJS">
-                        <span class="label">JavaScript</span>
-                        <span class="l1">&lt;script src="<span>/IconPicker/dist/iconpicker-1.5.0.js</span>"&gt;&lt;/script&gt;</span>
-                    </code>
-                </div>
+#### 3- HTML
 
-                <div class="info-content step-2">
-                    <code id="DemoCodeButton">
-                        <span class="label">HTML</span>
-                        <span class="l1">&lt;button type="button" <span class="clr">id=<span class="highlighted the-button">"GetIconPicker"</span></span> <span class="clr">data-iconpicker-input=<span class="highlighted the-input">"input#IconInput"</span></span> <span class="clr">data-iconpicker-preview=<span class="highlighted the-preview">"i#IconPreview"</span></span>&gt;Select Icon&lt;/button&gt;</span>                        
-                    </code>
-                </div>
+```html
+<button type="button" id="GetIconPicker" data-iconpicker-input="input#IconInput" data-iconpicker-preview="i#IconPreview">Select Icon</button>
+```
 
-                <div class="info-content step-3">
-                    <code id="DemoCodeInit">
-                        <span class="label">Initialize</span>
-                        <span class="l1 cmmnt">// Default options</span>
-                        <span class="l1"><span class="fnc1">IconPicker</span>.<span class="fnc2">Init</span>({</span>
-                            <span class="l1 l2 cmmnt">// Required: You have to set the url of Fontawesome CSS file you are using to "faCssUrl" option. e.g. 'https://use.fontawesome.com/releases/v5.2.0/css/all.css'</span>
-                            <span class="l1 l2"><span class="fnc1">faCssUrl:</span> <span class="bool">null</span>,</span>
-                            <span class="l1 l2 cmmnt">// Optional: Change the buttons or search placeholder text according to the language.</span>
-                            <span class="l1 l2"><span class="fnc1">searchPlaceholder:</span> <span class="str">'Search Icon'</span>,</span>
-                            <span class="l1 l2"><span class="fnc1">showAllButton:</span> <span class="str">'Show All'</span>,</span>
-                            <span class="l1 l2"><span class="fnc1">cancelButton:</span> <span class="str">'Cancel'</span>,</span>
+#### 4- Init
 
-                            <span class="l1 l2"><span class="fnc1">noResultsFound:</span> <span class="str">'No results found.'</span>, <span class="cmmnt">// v1.5.0 and the next versions</span></span>
-                            <span class="l1 l2"><span class="fnc1">borderRadius:</span> <span class="str">'20px'</span>, <span class="cmmnt">// v1.5.0 and the next versions</span></span>
-                        <span class="l1">});</span>                        
-                    </code>
-                </div>
+```js
+// Default options
+IconPicker.Init({
+  // Required: You have to set the url of Fontawesome CSS file you are using to "faCssUrl" option. e.g. 'https://use.fontawesome.com/releases/v5.2.0/css/all.css'
+  faCssUrl: null,
+  // Optional: Change the buttons or search placeholder text according to the language.
+  searchPlaceholder: 'Search Icon',
+  showAllButton: 'Show All',
+  cancelButton: 'Cancel',
+  noResultsFound: 'No results found.', // v1.5.0 and the next versions
+  borderRadius: '20px', // v1.5.0 and the next versions
+});
+```
 
-                <div class="info-content step-4">
-                    <code id="DemoCodeRun">
-                        <span class="label">Run</span>
-                        <span class="l1 cmmnt">// Select your Button element (ID or Class)</span>
-                        <span class="l1"><span class="fnc1">IconPicker</span>.<span class="fnc2">Run</span>(<span class="str the-button">'#GetIconPicker'</span>);</span>                 
-                    </code>
-                </div>
+#### 5.1- Run
 
-                <div class="info-content step-5">
-                    <code id="DemoCodeRunCallback">
-                        <span class="label">Run - with a callback function (v1.4.0 and next versions)</span>
-                        <span class="l1 cmmnt">// Select your Button element (ID or Class)</span>
-                        <span class="l1"><span class="fnc1">IconPicker</span>.<span class="fnc2">Run</span>(<span class="str the-button">'#GetIconPicker'</span>,</span>          
-                        
-                        <span class="l1 l2"><span class="cllbck">function</span>() {</span>
+```js
+// Select your Button element (ID or Class)
+IconPicker.Run('#GetIconPicker');
+```
 
-                        <span class="l1 l2 l3 cmmnt">// a callback function after than an icon selected on the list.</span>
 
-                        <span class="l1 l2">}</span>
 
-                        <span class="l1">);</span>  
-                    </code>
-                </div>
+#### 5.2- Run with a callback function (v1.4.0 and next versions)
 
-                <div class="info-content step-5">
-                    <p class="copyright">© 2019 IconPicker. All rights reserved.</p>
-                    <a class="github" target="_blank" rel="noopener" href="https://github.com/furcan"><i class="fab fa-github"></i>/furcan</a>
-                </div>
-            </div>
-        </div>
+```js
+// @param1 => Select your Button element (ID or Class)
+// @param2 => A Callback Function can be used after than an icon selected on the list.
 
-        <div class="container container-2 fixed">
+IconPicker.Run('#GetIconPicker', function(){
+    
+    // codes...
+    console.log('Icon Picker');
+    
+});
 
-            <div class="form-wrapper">
-                <span class="container-label form">Form Example</span>
-                <form id="DemoForm">
+```
 
-                    <div class="form-group">
+---------
+---------
+---------
 
-                        <div class="form-input opacity">
-                            <label for="Name">Module Name</label>
-                            <input type="text" id="Name" name="Name" class="inpt" placeholder="Module Name" autocomplete="off" spellcheck="false" required />
-                        </div>
+#### Copyright
+Copyright © 2019 Icon Picker
 
-                        <div class="form-input opacity">
-                            <label for="Email">Module Description</label>
-                            <textarea id="Description" name="Description" placeholder="Module Description" autocomplete="off" spellcheck="false" autocapitalize="none" rows="2" minlength="5" maxlength="2500" required></textarea>
-                        </div>
-
-                        <div class="form-input form-input-icon">
-                            <label>Module Icon</label>
-
-                            <div class="get-and-preview">
-                                <div class="icon-preview" data-toggle="tooltip" title="Preview of selected Icon">
-                                    <i id="IconPreview" class="fab fa-github"></i>
-                                </div>
-
-                                <button type="button" id="GetIconPicker" data-iconpicker-input="input#IconInput" data-iconpicker-preview="i#IconPreview">Select Icon</button>
-                            </div>
-
-                            <div class="export">
-                                <span class="info">A "Hidden" or "Text"(display:none; etc.) type of Input Element to set a "Font Awesome icon classname" and post with Form</span>
-                                <input type="text" id="IconInput" name="Icon" required placeholder="Hidden etc. input for icon classname" autocomplete="off" spellcheck="false" />
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group submit">
-                        <input type="submit" value="Submit">
-                    </div>
-
-                </form>
-            </div>
-
-            <div class="output-wrapper">
-                <span class="container-label action">Form Post</span>
-
-                <div id="DemoOutput">
-                    <code id="DemoCode"></code>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/notiflix/dist/AIO/notiflix-aio-1.9.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="dist/iconpicker-1.5.0.js"></script>
-    <script src="index-tooltip.js"></script>
-    <script src="index.js?v=1.5.0"></script>
-
-</body>
-
-</html>
+#### License
+MIT license - https://opensource.org/licenses/MIT
