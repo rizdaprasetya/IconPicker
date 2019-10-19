@@ -11,7 +11,7 @@ Use the Font Awesome Icons (Font Awesome Free v5.11.2) in your HTML forms. (1544
 1.5.0 [*](https://github.com/furcan/IconPicker/blob/master/ReleaseNotes.md)
 
 ### Website and Demo
-https://furcan.github.io/IconPicker/
+https://raw.githack.com/rizdaprasetya/IconPicker/master/index.html
 
 ---------
 
@@ -53,8 +53,8 @@ yarn add @furcan/iconpicker
 ```js
 // Default options
 IconPicker.Init({
-  // Required: You have to set the path of IconPicker JSON file to "jsonUrl" option. e.g. '/content/plugins/IconPicker/dist/iconpicker-1.5.0.json'
-  jsonUrl: null,
+  // Required: You have to set the url of Fontawesome CSS file you are using to "faCssUrl" option. e.g. 'https://use.fontawesome.com/releases/v5.2.0/css/all.css'
+  faCssUrl: null,
   // Optional: Change the buttons or search placeholder text according to the language.
   searchPlaceholder: 'Search Icon',
   showAllButton: 'Show All',
