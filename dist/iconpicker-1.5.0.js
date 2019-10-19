@@ -16,6 +16,8 @@ var ipDefaultOptions = {
     cancelButton: 'Cancel',
     noResultsFound: 'No results found.',
     borderRadius: '20px',
+    extractorPattern: '/glyph-name="(.*?)"/g',
+    faPrefixClassName: 'fas fa-'
 }
 var ipNewOptions;
 var ipGithubUrl = 'https://github.com/furcan/IconPicker';
@@ -104,6 +106,14 @@ var IconPicker = {
                         if (!borderRadius || (borderRadius && borderRadius.length < 1)) {
                             borderRadius = ipDefaultOptions.borderRadius;
                         }
+                        var extractorPattern = ipNewOptions.extractorPattern;
+                        if (!extractorPattern || (extractorPattern && extractorPattern.length < 1)) {
+                            extractorPattern = ipDefaultOptions.extractorPattern;
+                        }
+                        var faPrefixClassName = ipNewOptions.faPrefixClassName;
+                        if (!faPrefixClassName || (faPrefixClassName && faPrefixClassName.length < 1)) {
+                            faPrefixClassName = ipDefaultOptions.faPrefixClassName;
+                        }
 
                         // check the json url on
                         if (!faCssUrl) {
@@ -133,7 +143,7 @@ var IconPicker = {
                         }
                         // check the callback off
 
-                        getIconListXmlHttpRequest(faCssUrl, showAllButton, cancelButton, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback);
+                        getIconListXmlHttpRequest(faCssUrl, extractorPattern, faPrefixClassName, showAllButton, cancelButton, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback);
 
                     });
                     // IconPicker: Button Listeners -> Send XMLHttpRequest off
@@ -156,7 +166,7 @@ var IconPicker = {
 
 
         // IconPicker: Get Library from JSON and AppendTo Body on
-        var getIconListXmlHttpRequest = function (faCssUrl, buttonShowAll, buttonCancel, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback) {
+        var getIconListXmlHttpRequest = function (faCssUrl, extractorPattern, faPrefixClassName, buttonShowAll, buttonCancel, searchPlaceholder, borderRadius, inputElement, previewElement, theCallback) {
 
             // if chrome browser
             if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
@@ -178,14 +188,12 @@ var IconPicker = {
                     return res.text()
                   })
                   .then(responseText => {
-                    var pattern = /\.fa-(.*?)\:before/g;
-                    var faPrefixClassName = "fas fa-";
-                    var rawMatches = responseText.match(pattern);
+                    var rawMatches = responseText.match(extractorPattern);
                     var faIcon = {};
 
                     rawMatches.map(function (el,idx) {
-                      pattern.lastIndex=0; // reset globalIndex to avoid issue https://stackoverflow.com/q/1520800
-                      var matchGroup = pattern.exec(el);
+                      extractorPattern.lastIndex=0; // reset globalIndex to avoid issue https://stackoverflow.com/q/1520800
+                      var matchGroup = extractorPattern.exec(el);
                       if (!matchGroup || !matchGroup[1]){
                         return null;
                       }
